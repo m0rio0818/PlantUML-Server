@@ -26,27 +26,12 @@ require_once "./getProblems.php";
                         <th class="text-left px-4 py-2">Theme</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    $items = json();
-                    $totalPages = ceil(count($items) / 10);
-                    foreach ($items as $item) {
-                        echo sprintf(
-                            "<tr  class='hover:bg-gray-200 border-b border-gray-200'>
-                                    <td class='px-4 py-2'>%s</td>
-                                    <td class='px-4 py-2 mx-auto'>%s</td>
-                                    <td class='px-4 py-2'>%s</td>
-                                </tr>",
-                            $item["id"],
-                            $item["title"],
-                            $item["theme"],
-                        );
-                    }
-                    ?>
+                <tbody id="table_info">
                 </tbody>
         </div>
     </div>
 
 </body>
+<script src="../src/js/problems_page.js"></script>
 
 </html>
