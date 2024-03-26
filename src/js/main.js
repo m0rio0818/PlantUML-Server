@@ -10,37 +10,20 @@ require(['vs/editor/editor.main'], function () {
         language: 'markdown'
     });
 
-    window.addEventListener("load", () => {
-        let value = editor.getValue();
-        let highlight = document.getElementById("highlight").value;
-        updateRender(value, highlight, "preview")
-    })
+    // window.addEventListener("load", () => {
+    //     // let value = editor.getValue();
+    //     // let highlight = document.getElementById("highlight").value;
+    //     updateRender(value, highlight, "preview")
+    // })
 
     editor.onDidChangeModelContent(() => {
-        let htmlButton = document.getElementById("html");
-        let highlight = document.getElementById("highlight").value;
-        let value = editor.getValue();
-        let type = htmlButton.value == "on" ? "html" : "preview";
-        updateRender(value, highlight, type);
+        // let htmlButton = document.getElementById("html");
+        // // let highlight = document.getElementById("highlight").value;
+        // let value = editor.getValue();
+        // let type = htmlButton.value == "on" ? "html" : "preview";
+        // updateRender(value, highlight, type);
     });
 });
-
-
-function togglePreviewHTML() {
-    let htmlButton = document.getElementById("html");
-    let preview_button = document.getElementById("preview");
-    if (htmlButton.value == "on") {
-        // htmlButton.value == "on"
-        // preview_button.value = "off"
-        htmlButton.value = "off"
-        preview_button.value = "on"
-    } else {
-        // htmlButton.value == "off"
-        // preview_button.value = "on"
-        htmlButton.value = "on"
-        preview_button.value = "off"
-    }
-}
 
 
 function update_HTML(editor) {

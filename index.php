@@ -1,4 +1,4 @@
 <?php
-header('Location: ./redirect.php');
+header('Location: ../pages/problems.php');
 exit();
 ?>
