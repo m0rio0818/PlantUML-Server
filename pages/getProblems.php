@@ -1,6 +1,6 @@
 <?php
 
-function json(): array
+function load_json(): array
 {
     $url = "../json/problems.json";
     $json = file_get_contents($url);
