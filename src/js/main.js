@@ -25,6 +25,14 @@ require(['vs/editor/editor.main'], function () {
     });
 });
 
+function activateTabs() {
+    let editor = document.getElementById("editor");
+    let exercices = document.getElementById("exercices");
+
+    
+
+}
+
 
 function update_HTML(editor) {
     let htmlButton = document.getElementById("html");

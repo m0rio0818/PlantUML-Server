@@ -17,14 +17,28 @@ require_once "./getProblems.php";
 <?php
 $json_items = load_json();
 $get_id = $_GET["id"];
-$id = $get_id-1;
+$id = $get_id - 1;
 $title = $json_items[$id]["title"];
 $theme = $json_items[$id]["theme"];
 $uml = $json_items[$id]["uml"];
 ?>
 
 <body>
-    <div class="d-flex flex-row h-screen ">
+    <div class="d-flex flex-col h-screen ">
+        <div class="d-flex font-medium text-center text-gray-500 underline-b">
+            <ul class="flex flex-wrap justify-end -mb-px">
+                <li class="me-2 border-b-2 hover:border-gray-400">
+                    <a id="editor" href="../index.php" class="inline-block p-4 rounded-t-lg text-gray-500 hover:text-black hover:border-gray-300" style="text-decoration:none;">
+                        Editor
+                    </a>
+                </li>
+                <li class="me-2 border-b-2 hover:border-gray-400">
+                    <a id="exercices" href="../pages/problems.php" class="active inline-block p-4 rounded-t-lg text-gray-500 hover:text-black hover:border-gray-300" style="text-decoration:none;">
+                        Exercices
+                    </a>
+                </li>
+            </ul>
+        </div>
         <h1 class="text-center">
             <?php
             echo $title;

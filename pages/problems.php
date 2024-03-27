@@ -18,7 +18,21 @@ $json_items = load_json();
 ?>
 
 <body>
-    <div class="flex flex-col h-full p-10 ">
+    <div class="flex flex-col h-full ">
+        <div class="d-flex font-medium text-center text-gray-500 underline-b">
+            <ul class="flex flex-wrap justify-end -mb-px">
+                <li class="me-2 border-b-2 hover:border-gray-400">
+                    <a id="editor" href="../index.php" class="inline-block p-4 rounded-t-lg text-gray-500 hover:text-black hover:border-gray-300" style="text-decoration:none;">
+                        Editor
+                    </a>
+                </li>
+                <li class="me-2 border-b-2 hover:border-gray-400">
+                    <a id="exercices" href="../pages/problems.php" class="active inline-block p-4 rounded-t-lg text-gray-500 hover:text-black hover:border-gray-300" style="text-decoration:none;">
+                        Exercices
+                    </a>
+                </li>
+            </ul>
+        </div>
         <h2 class="mx-auto">Coding Problems</h2>
         <div class="w-full">
             <table class="table-auto mx-auto  w-8/12">
