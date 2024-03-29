@@ -14,7 +14,7 @@ require_once "./getProblems.php";
 </head>
 
 <?php
-$json_items = load_json();
+// $json_items = load_json();
 ?>
 
 <body>
@@ -44,27 +44,10 @@ $json_items = load_json();
                     </tr>
                 </thead>
                 <tbody id="table_info">
-                    <?php
-                    foreach ($json_items as $item) {
-                        $id = $item["id"];
-                        $title = $item["title"];
-                        $theme = $item["theme"];
-                        echo sprintf(
-                            "<tr id='item_id' onclick='moveToDetailPage($id)' class='hover:bg-gray-200 border-b border-gray-200'>
-                                        <td id='id_$id' class='px-4 py-2'>%s</td>
-                                        <td id='title_$id' class='px-4 py-2 mx-auto'>%s</td>
-                                        <td id='theme_$id' class='px-4 py-2'>%s</td>
-                                    </tr>",
-                            $item["id"],
-                            $item["title"],
-                            $item["theme"],
-                        );
-                    }
-                    ?>
                 </tbody>
         </div>
     </div>
 </body>
-<script src="../src/js/problems_page.js"></script>
+<script type="module" src="../src/js/problems_page.js"></script>
 
 </html>

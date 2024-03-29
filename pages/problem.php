@@ -1,5 +1,9 @@
 <?php
+require __DIR__ . '../../vendor/autoload.php';
 require_once "./getProblems.php";
+
+use function Jawira\PlantUml\encodep;
+
 ?>
 
 <!DOCTYPE html>
@@ -9,21 +13,26 @@ require_once "./getProblems.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Plant UML </title>
+    <title><?php $theme ?> </title>
     <link rel="stylesheet" href="../src/css/style.css">
     </style>
 </head>
 
 <?php
-$json_items = load_json();
-$get_id = $_GET["id"];
-$id = $get_id - 1;
-$title = $json_items[$id]["title"];
-$theme = $json_items[$id]["theme"];
-$uml = $json_items[$id]["uml"];
+if (isset($_GET["id"])) {
+    $json_items = load_json();
+    $get_id = $_GET["id"];
+    $id = $get_id - 1;
+    $title = $json_items[$id]["title"];
+    $theme = $json_items[$id]["theme"];
+    $uml = $json_items[$id]["uml"];
+    $encode = encodep($uml);
+    $encoded_url =  "http://www.plantuml.com/plantuml/png/{$encode}";
+}
 ?>
 
 <body>
+    <?php $id ?>
     <div class="d-flex flex-col h-screen ">
         <div class="d-flex font-medium text-center text-gray-500 underline-b">
             <ul class="flex flex-wrap justify-end -mb-px">
@@ -45,7 +54,7 @@ $uml = $json_items[$id]["uml"];
             ?>
         </h1>
         <div class="p-3 flex items-center justify-center sticky top-0 bg-white">
-            <button id="ans_uml" value="on" class="bg-transparent mx-1 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+            <button id="show_ans" onclick='showAnswer(<?php echo json_encode($uml); ?>, <?php echo json_encode($encoded_url); ?>)' value="off" class="bg-transparent mx-1 py-1 px-3 border font-semibold hover:bg-gray-400 text-gray-600 hover:text-white border-gray-400 hover:border-transparent rounded-sm">
                 Show Anwer
             </button>
         </div>
@@ -67,13 +76,14 @@ $uml = $json_items[$id]["uml"];
                 <div id="converted-ele" class="p-2">
                 </div>
             </div>
-            <div id="answer_area" data-php-variable="<?php echo $uml; ?>" class="w-full lg:w-1/3 h-1/3 md:h-3/4 lg:h-full overflow-scroll" style="border:1px solid grey">
+            <div id="answer_area" value="off" class="w-full lg:w-1/3 h-1/3 md:h-3/4 lg:h-full overflow-scroll" style="border:1px solid grey">
+                <img id="ans_img" src="<?php echo $encoded_url ?>" alt="answer uml">
             </div>
         </div>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
 <script src="../src/js/problem_page.js"></script>
-<script src="../src/js/main.js"></script>
+<script type="module" src="../src/js/main.js"></script>
 
 </html>
