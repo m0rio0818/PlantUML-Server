@@ -26,8 +26,8 @@ require_once "./getProblems.php";
                         Editor
                     </a>
                 </li>
-                <li class="me-2 border-b-2 hover:border-gray-400">
-                    <a id="exercices" href="../pages/problems.php" class="active inline-block p-4 rounded-t-lg text-gray-500 hover:text-black hover:border-gray-300" style="text-decoration:none;">
+                <li class="me-2 border-b-2 border-green-500">
+                    <a id="exercices" href="../pages/problems.php" class="active inline-block p-4 rounded-t-lg text-green-500  hover:border-gray-300" style="text-decoration:none;">
                         Exercices
                     </a>
                 </li>
