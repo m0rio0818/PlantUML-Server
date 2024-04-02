@@ -1,6 +1,50 @@
 {
     "packages": [
         {
+            "name": "jawira/plantuml",
+            "version": "v1.2024.3",
+            "version_normalized": "1.2024.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jawira/plantuml.git",
+                "reference": "9654ec498b0c23d993c7e79a6680c8f613bfc98e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jawira/plantuml/zipball/9654ec498b0c23d993c7e79a6680c8f613bfc98e",
+                "reference": "9654ec498b0c23d993c7e79a6680c8f613bfc98e",
+                "shasum": ""
+            },
+            "time": "2024-02-16T14:00:48+00:00",
+            "bin": [
+                "bin/plantuml"
+            ],
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jawira Portugal"
+                }
+            ],
+            "description": "Provides PlantUML executable and plantuml.jar",
+            "keywords": [
+                "diagram",
+                "jar",
+                "plantuml",
+                "plantuml.jar",
+                "uml"
+            ],
+            "support": {
+                "issues": "https://github.com/jawira/plantuml/issues",
+                "source": "https://github.com/jawira/plantuml/tree/v1.2024.3"
+            },
+            "install-path": "../jawira/plantuml"
+        },
+        {
             "name": "jawira/plantuml-encoding",
             "version": "v1.1.0",
             "version_normalized": "1.1.0.0",

@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e52cef09f2eb0b43ddf8b9d488b1381f",
+    "content-hash": "325a65d7e873798320b14832321e97a2",
     "packages": [
+        {
+            "name": "jawira/plantuml",
+            "version": "v1.2024.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jawira/plantuml.git",
+                "reference": "9654ec498b0c23d993c7e79a6680c8f613bfc98e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jawira/plantuml/zipball/9654ec498b0c23d993c7e79a6680c8f613bfc98e",
+                "reference": "9654ec498b0c23d993c7e79a6680c8f613bfc98e",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/plantuml"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jawira Portugal"
+                }
+            ],
+            "description": "Provides PlantUML executable and plantuml.jar",
+            "keywords": [
+                "diagram",
+                "jar",
+                "plantuml",
+                "plantuml.jar",
+                "uml"
+            ],
+            "support": {
+                "issues": "https://github.com/jawira/plantuml/issues",
+                "source": "https://github.com/jawira/plantuml/tree/v1.2024.3"
+            },
+            "time": "2024-02-16T14:00:48+00:00"
+        },
         {
             "name": "jawira/plantuml-encoding",
             "version": "v1.1.0",
