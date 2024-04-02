@@ -43,14 +43,14 @@ require_once "./pages/getProblems.php";
         </h1>
         <div>
             <div class="p-3 flex items-center justify-center sticky top-0 bg-white">
-                <button id="png" value="on" onclick="png_click()" class="bg-transparent mx-1 py-1 px-3 font-semibold border rounded hover:bg-white hover:text-black  hover:border-gray-400 text-white bg-gray-400 border-gray-400 hover:border-transparent">
+                <button id="png" value="on" class="bg-transparent mx-1 py-1 px-3 font-semibold border rounded hover:bg-white hover:text-black  hover:border-gray-400 text-white bg-gray-400 border-gray-400 hover:border-transparent">
                     png
                 </button>
-                <button id="svg" value="off" onclick="svg_click()" class="bg-transparent mx-1 py-1 px-3 font-semibold border rounded hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 hover:border-transparent">
+                <button id="svg" value="off" class="bg-transparent mx-1 py-1 px-3 font-semibold border rounded hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 hover:border-transparent">
                     svg
                 </button>
-                <button id="text" value="off" onclick="text_click()" class="bg-transparent mx-1 font-semibold py-1 px-3 border rounded hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 hover:border-transparent">
-                    text
+                <button id="text" value="off" class="bg-transparent mx-1 font-semibold py-1 px-3 border rounded hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 hover:border-transparent">
+                PlantUML Server
                 </button>
                 <button id="download" class="bg-transparent mx-1 font-semibold py-1 px-3 border rounded hover:bg-gray-400 text-gray-700  hover:text-white  border-gray-400 hover:border-transparent">
                     Download

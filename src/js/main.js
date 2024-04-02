@@ -1,6 +1,5 @@
 const converted_ele = document.getElementById("converted-ele");
 
-
 require.config({
     paths: {
         'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs'
@@ -13,38 +12,25 @@ require(['vs/editor/editor.main'], function () {
         language: 'plaintext'
     });
 
-    // window.addEventListener("load", () => {
-    //     // let value = editor.getValue();
-    //     // let highlight = document.getElementById("highlight").value;
-    //     updateRender(value, highlight, "preview")
-    // })
+    png_click(editor);
+    svg_click(editor);
+    text_click(editor);
 
     editor.onDidChangeModelContent(() => {
         let value = editor.getValue();
+        const png = document.getElementById("png");
+        const svg = document.getElementById("svg");
+        const text = document.getElementById("text");
 
-        // console.log(JSON.stringify(params));
-
-        updateRender(value, "png");
-        // updateRender(params, "uml");
-        //     fetch("../../pages/problem.php", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(params)
-        //     })
-        //         .then(response => {
-        //             // if (!response.ok) {
-        //             //     throw new Error("Network response is not OK");
-        //             // }
-        //             return response.text()
-        //         })
-        //         .then(data => {
-        //             console.log(data)
-        //         })
-        //         .catch(error => {
-        //             console.error('There was a problem with your fetch operation:', error);
-        //         });
+        if (png.value == "on") {
+            updateRender(value, "png");
+        } else if (svg.value == "on") {
+            updateRender(value, "svg");
+        } else if (text.value == "on") {
+            updateRender(value, "txt");
+        } else {
+            updateRender(value, "uml");
+        }
     });
 });
 
@@ -70,10 +56,24 @@ function updateRender(text, type) {
             return response.text(); // レスポンスをテキスト形式で取得
         })
         .then(data => {
-            console.log(converted_ele);
-            converted_ele.innerHTML = `<img src=${data} alt="converted uml">`;
-            console.log(converted_ele);
-            console.log(data);
+            console.log("data => ", data);
+            if (type == "png") {
+                converted_ele.innerHTML = `<img src=${data} alt="converted uml">`;
+                console.log(converted_ele);
+            }
+            else if (type == "svg") {
+                console.log(data);
+                converted_ele.innerHTML = `<img src=${data} alt="converted uml">`;
+                console.log(converted_ele);
+
+            } else if (type == "txt") {
+                converted_ele.innerHTML = `${data}`;
+                console.log(data);
+
+            } else {
+                converted_ele.innerHTML = "";
+
+            }
         })
         .catch(error => {
             console.error("There was a problem with the fetch operation:", error);
@@ -81,7 +81,109 @@ function updateRender(text, type) {
 }
 
 
-function activateTabs() {
-    let editor = document.getElementById("editor");
-    let exercices = document.getElementById("exercices");
+function change_style_off(part) {
+    part.classList.remove("hover:bg-white", "hover:text-black", "hover:border-gray-400", "text-white", "bg-gray-400", "border-gray-400");
+    part.classList.add("hover:bg-gray-400", "hover:text-white", "text-gray-700", "border-gray-400");
+}
+
+function change_style_on(part) {
+    part.classList.remove("hover:bg-gray-400", "hover:text-white", "text-gray-700", "border-gray-400");
+    part.classList.add("hover:bg-white", "hover:text-black", "hover:border-gray-400", "text-white", "bg-gray-400", "border-gray-400");
+}
+
+
+function getAscii(url) {
+    console.log("リクエスト送信")
+    const requet = new Request(url, {
+        method: "GET",
+    })
+
+    fetch(requet)
+        .then(data => {
+            console.log("data: ", data.text())
+        })
+}
+
+
+function png_click(editor) {
+    const png = document.getElementById("png");
+    const svg = document.getElementById("svg");
+    const text = document.getElementById("text");
+
+    png.addEventListener("click", () => {
+        console.log("クリックされたよ => ", editor.getValue())
+        let value = editor.getValue();
+        if (png.value == "off") {
+            // pngをonに変える
+            png.value = "on";
+            svg.value = "off";
+            text.value = "off";
+            change_style_on(png);
+            change_style_off(svg);
+            change_style_off(text);
+            updateRender(value, "png");
+        } else {
+            console.log("すでにpngはonです")
+        }
+    })
+
+}
+
+
+function svg_click(editor) {
+    const png = document.getElementById("png");
+    const svg = document.getElementById("svg");
+    const text = document.getElementById("text");
+
+    svg.addEventListener("click", () => {
+        console.log("クリックされたよ => ", editor.getValue())
+        let value = editor.getValue();
+        if (svg.value == "off") {
+            png.value = "off";
+            svg.value = "on";
+            text.value = "off";
+            change_style_off(png);
+            change_style_on(svg);
+            change_style_off(text);
+            updateRender(value, "svg");
+        } else {
+            console.log("すでに svg onです")
+        }
+    })
+
+}
+
+
+function text_click(editor) {
+    const png = document.getElementById("png");
+    const svg = document.getElementById("svg");
+    const text = document.getElementById("text");
+
+    text.addEventListener("click", () => {
+        console.log("クリックされたよ => ", editor.getValue())
+        let value = editor.getValue();
+        if (text.value == "off") {
+            png.value = "off";
+            svg.value = "off";
+            text.value = "on";
+
+            change_style_off(png);
+            change_style_off(svg);
+            change_style_on(text);
+            
+            updateRender(value, "txt");
+            
+        } else {
+            console.log("すでに text onです")
+        }
+    })
+
+}
+
+
+function download_click() {
+    const png = document.getElementById("png");
+    const svg = document.getElementById("svg");
+    const text = document.getElementById("text");
+
 }
