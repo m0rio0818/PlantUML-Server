@@ -12,9 +12,9 @@ if ($type == "png" || $type == "svg") {
     echo "http://www.plantuml.com/plantuml/{$type}/{$encode}";
 } else {
     $encode = encodep($value);
-    $apiUrl = "https://www.plantuml.com/plantuml/txt/{$encode}";
-    $asciiArt = file_get_contents($apiUrl);
-
+    $url = "https://www.plantuml.com/plantuml/txt/{$encode}";
+    
+    $asciiArt = file_get_contents($url);
     // 取得したASCIIアートをHTMLに表示
     echo '<pre>' . $asciiArt . '</pre>';
 }

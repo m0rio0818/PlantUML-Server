@@ -15,6 +15,7 @@ require(['vs/editor/editor.main'], function () {
     png_click(editor);
     svg_click(editor);
     text_click(editor);
+    download_click();
 
     editor.onDidChangeModelContent(() => {
         let value = editor.getValue();
@@ -56,7 +57,6 @@ function updateRender(text, type) {
             return response.text(); // レスポンスをテキスト形式で取得
         })
         .then(data => {
-            console.log("data => ", data);
             if (type == "png") {
                 converted_ele.innerHTML = `<img src=${data} alt="converted uml">`;
                 console.log(converted_ele);
@@ -72,7 +72,6 @@ function updateRender(text, type) {
 
             } else {
                 converted_ele.innerHTML = "";
-
             }
         })
         .catch(error => {
@@ -91,27 +90,12 @@ function change_style_on(part) {
     part.classList.add("hover:bg-white", "hover:text-black", "hover:border-gray-400", "text-white", "bg-gray-400", "border-gray-400");
 }
 
-
-function getAscii(url) {
-    console.log("リクエスト送信")
-    const requet = new Request(url, {
-        method: "GET",
-    })
-
-    fetch(requet)
-        .then(data => {
-            console.log("data: ", data.text())
-        })
-}
-
-
 function png_click(editor) {
     const png = document.getElementById("png");
     const svg = document.getElementById("svg");
     const text = document.getElementById("text");
 
     png.addEventListener("click", () => {
-        console.log("クリックされたよ => ", editor.getValue())
         let value = editor.getValue();
         if (png.value == "off") {
             // pngをonに変える
@@ -122,11 +106,8 @@ function png_click(editor) {
             change_style_off(svg);
             change_style_off(text);
             updateRender(value, "png");
-        } else {
-            console.log("すでにpngはonです")
         }
     })
-
 }
 
 
@@ -136,7 +117,6 @@ function svg_click(editor) {
     const text = document.getElementById("text");
 
     svg.addEventListener("click", () => {
-        console.log("クリックされたよ => ", editor.getValue())
         let value = editor.getValue();
         if (svg.value == "off") {
             png.value = "off";
@@ -146,8 +126,6 @@ function svg_click(editor) {
             change_style_on(svg);
             change_style_off(text);
             updateRender(value, "svg");
-        } else {
-            console.log("すでに svg onです")
         }
     })
 
@@ -160,7 +138,6 @@ function text_click(editor) {
     const text = document.getElementById("text");
 
     text.addEventListener("click", () => {
-        console.log("クリックされたよ => ", editor.getValue())
         let value = editor.getValue();
         if (text.value == "off") {
             png.value = "off";
@@ -170,11 +147,8 @@ function text_click(editor) {
             change_style_off(png);
             change_style_off(svg);
             change_style_on(text);
-            
+
             updateRender(value, "txt");
-            
-        } else {
-            console.log("すでに text onです")
         }
     })
 
@@ -185,5 +159,63 @@ function download_click() {
     const png = document.getElementById("png");
     const svg = document.getElementById("svg");
     const text = document.getElementById("text");
+    const download = document.getElementById("download");
 
+    download.addEventListener("click", () => {
+        if (png.value == "on") {
+            console.log("png => ", "ダウンロードがクリックされました");
+            const imgElement = converted_ele.getElementsByTagName("img");
+            const imgUrl = imgElement[0].getAttribute("src");
+            downloadImg(imgUrl, "png");
+
+        } else if (svg.value == "on") {
+            console.log("svg => ", "ダウンロードがクリックされました");
+            const imgElement = converted_ele.getElementsByTagName("img");
+            const imgUrl = imgElement[0].getAttribute("src");
+            downloadImg(imgUrl, "svg");
+        } else if (text.value == "on") {
+            console.log("text => ", "ダウンロードがクリックされました");
+            const preElement = converted_ele.getElementsByTagName("pre");
+            const data = preElement[0].innerText;
+            downloadText(data);            
+        }
+    })
+}
+
+
+function downloadText(data){
+    console.log("ダウンロードするコンテンツ => ",data);
+    let blob = new Blob([data], { "type": "text/html" })
+
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "converted.txt";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+
+
+function downloadImg(url, type) {
+    fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+            let imageUrl = URL.createObjectURL(blob);
+            // ダウンロード用のリンクを作成し、画像URLを設定する
+            let downloadLink = document.createElement("a");
+            downloadLink.href = imageUrl;
+
+            // ダウンロード時のファイル名を指定（任意）
+            console.log("download", "imgage." + type);
+            downloadLink.download = "plantUML." + type;
+
+            // リンクをクリックして画像をダウンロードする
+            downloadLink.click();
+
+            // 使用後にURLを解放する（メモリーリークを防ぐため）
+            URL.revokeObjectURL(imageUrl);
+        })
+        .catch(error => console.error("画像のダウンロード中にエラーが発生しました:", error));
 }

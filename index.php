@@ -50,7 +50,7 @@ require_once "./pages/getProblems.php";
                     svg
                 </button>
                 <button id="text" value="off" class="bg-transparent mx-1 font-semibold py-1 px-3 border rounded hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 hover:border-transparent">
-                PlantUML Server
+                   text
                 </button>
                 <button id="download" class="bg-transparent mx-1 font-semibold py-1 px-3 border rounded hover:bg-gray-400 text-gray-700  hover:text-white  border-gray-400 hover:border-transparent">
                     Download
