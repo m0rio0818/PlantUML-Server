@@ -12,10 +12,12 @@ require(['vs/editor/editor.main'], function () {
         language: 'plaintext'
     });
 
-    png_click(editor);
-    svg_click(editor);
-    text_click(editor);
-    download_click();
+    let currentURL = window.location.href;
+    if (currentURL.includes("problem.php")){
+        problemPage_buttonClcik(editor)
+    }else if (currentURL.includes("index.php")){
+        Editor_buttonClcik(editor);
+    }
 
     editor.onDidChangeModelContent(() => {
         let value = editor.getValue();
@@ -90,11 +92,32 @@ function change_style_on(part) {
     part.classList.add("hover:bg-white", "hover:text-black", "hover:border-gray-400", "text-white", "bg-gray-400", "border-gray-400");
 }
 
-function png_click(editor) {
+
+function problemPage_buttonClcik(editor) {
     const png = document.getElementById("png");
     const svg = document.getElementById("svg");
     const text = document.getElementById("text");
 
+    png_click(editor, png, svg, text);
+    svg_click(editor, png, svg, text);
+    text_click(editor, png, svg, text);
+}
+
+
+function Editor_buttonClcik(editor) {
+    const png = document.getElementById("png");
+    const svg = document.getElementById("svg");
+    const text = document.getElementById("text");
+    const download = document.getElementById("download");
+
+    png_click(editor, png, svg, text);
+    svg_click(editor, png, svg, text);
+    text_click(editor, png, svg, text);
+    download_click(png, svg, text, download);
+}
+
+
+function png_click(editor, png, svg, text) {
     png.addEventListener("click", () => {
         let value = editor.getValue();
         if (png.value == "off") {
@@ -111,11 +134,7 @@ function png_click(editor) {
 }
 
 
-function svg_click(editor) {
-    const png = document.getElementById("png");
-    const svg = document.getElementById("svg");
-    const text = document.getElementById("text");
-
+function svg_click(editor, png, svg, text) {
     svg.addEventListener("click", () => {
         let value = editor.getValue();
         if (svg.value == "off") {
@@ -132,10 +151,7 @@ function svg_click(editor) {
 }
 
 
-function text_click(editor) {
-    const png = document.getElementById("png");
-    const svg = document.getElementById("svg");
-    const text = document.getElementById("text");
+function text_click(editor, png, svg, text) {
 
     text.addEventListener("click", () => {
         let value = editor.getValue();
@@ -155,36 +171,27 @@ function text_click(editor) {
 }
 
 
-function download_click() {
-    const png = document.getElementById("png");
-    const svg = document.getElementById("svg");
-    const text = document.getElementById("text");
-    const download = document.getElementById("download");
-
+function download_click(png, svg, text, download) {
     download.addEventListener("click", () => {
         if (png.value == "on") {
-            console.log("png => ", "ダウンロードがクリックされました");
             const imgElement = converted_ele.getElementsByTagName("img");
             const imgUrl = imgElement[0].getAttribute("src");
             downloadImg(imgUrl, "png");
-
         } else if (svg.value == "on") {
-            console.log("svg => ", "ダウンロードがクリックされました");
             const imgElement = converted_ele.getElementsByTagName("img");
             const imgUrl = imgElement[0].getAttribute("src");
             downloadImg(imgUrl, "svg");
         } else if (text.value == "on") {
-            console.log("text => ", "ダウンロードがクリックされました");
             const preElement = converted_ele.getElementsByTagName("pre");
             const data = preElement[0].innerText;
-            downloadText(data);            
+            downloadText(data);
         }
     })
 }
 
 
-function downloadText(data){
-    console.log("ダウンロードするコンテンツ => ",data);
+function downloadText(data) {
+    console.log("ダウンロードするコンテンツ => ", data);
     let blob = new Blob([data], { "type": "text/html" })
 
     const url = window.URL.createObjectURL(blob);

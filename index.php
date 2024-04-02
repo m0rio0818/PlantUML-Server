@@ -61,7 +61,6 @@ require_once "./pages/getProblems.php";
             <div id="editor-container" class="w-full lg:w-1/2 h-1/2 md:h-3/4 lg:h-full" style="border:1px solid grey">
             </div>
             <div class="w-full lg:w-1/2 h-1/2 md:h-3/4 lg:h-full overflow-scroll" style="border:1px solid grey">
-
                 <div id="converted-ele" class="p-2">
                 </div>
             </div>

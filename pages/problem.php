@@ -84,6 +84,5 @@ if (isset($_GET["id"])) {
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
 <script src="../src/js/problem_page.js"></script>
-<script type="module" src="../src/js/main.js"></script>
-
+<script src="../src/js/main.js"></script>
 </html>
