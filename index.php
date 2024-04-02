@@ -16,7 +16,6 @@ require_once "./pages/getProblems.php";
 </head>
 
 <body>
-    <?php $id ?>fetch
     <div class="d-flex flex-col h-screen ">
         <div class="d-flex font-medium text-center text-gray-500 underline-b">
             <ul class="flex flex-wrap justify-end -mb-px">
