@@ -63,13 +63,13 @@ if (isset($_GET["id"])) {
             </div>
             <div class="w-full lg:w-1/3 h-1/3 md:h-3/4 lg:h-full overflow-scroll" style="border:1px solid grey">
                 <div class="p-3 flex items-center justify-center sticky top-0 bg-white">
-                    <button id="png" value="on" class="bg-transparent mx-1 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+                    <button id="png" value="on" class="bg-transparent mx-1  py-1 px-2 border hover:bg-white hover:text-black  hover:border-gray-400 text-white bg-gray-400 border-gray-400  hover:border-transparent rounded">
                         png
                     </button>
-                    <button id="svg" value="off" class="bg-transparent mx-1 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+                    <button id="svg" value="off" class="bg-transparent mx-1 py-1 px-2 border hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400  hover:border-transparent rounded">
                         svg
                     </button>
-                    <button id="text" value="on" class="bg-transparent mx-1 font-semibold py-1 px-2 border hover:bg-blue-500 text-blue-700  hover:text-white  border-blue-500 hover:border-transparent rounded">
+                    <button id="text" value="on" class="bg-transparent mx-1 font-semibold py-1 px-2 border  hover:bg-gray-400 hover:text-white text-gray-700 border-gray-400 border-gray-400hover:border-transparent rounded">
                         text
                     </button>
                 </div>

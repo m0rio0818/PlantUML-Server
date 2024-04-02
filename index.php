@@ -1,10 +1,4 @@
 <?php
-// header('Location: ../pages/problems.php');
-// exit();
-?>
-
-
-<?php
 require __DIR__ . '/vendor/autoload.php';
 require_once "./pages/getProblems.php";
 ?>
